@@ -1,13 +1,23 @@
+/* 1. CSS 樣式 (現代清晰風格與像素化) */
+        
 /* 全局設置：使用現代易讀字體，確保清晰度 */
 body {
     font-family: Arial, Helvetica, sans-serif; 
-    background-color: #F0F0F0; 
-    color: #333; 
+    /* background-color: #F0F0F0; /* 淺灰色背景 */
+    color: #333; /* 深色文字 */
     margin: 0;
     padding: 20px;
     text-align: center;
     line-height: 1.6;
     min-height: 100vh;
+    
+    /* ======== Minecraft 風格背景修正 ======== */
+    background-image: url('grass_texture.png'); /* 使用您的草地紋理圖片 */
+    background-repeat: repeat; /* 重複平鋪 */
+    background-size: 64px 64px; /* 控制紋理大小，使其看起來像素化 */
+    background-attachment: fixed; /* 背景不隨滾動條移動 */
+    background-color: #557A3A; /* 如果圖片載入失敗，顯示的備用顏色 (Minecraft 草地綠) */
+    /* ======================================= */
 }
 
 /* 移除所有文字陰影，確保清晰度 */
@@ -18,27 +28,34 @@ h1, h2, span, p, button {
 
 /* 核心元素樣式 */
 .block-element {
-    border: 1px solid #CCC;
-    border-radius: 8px; 
+    border: 1px solid #6B4E3E; /* 稍微深一點的邊框顏色，像木頭或泥土 */
+    border-radius: 4px; /* 稍微減少圓角，更方正 */
     padding: 15px;
     margin-bottom: 20px;
-    background-color: #FFF; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    background-color: rgba(255, 255, 255, 0.9); /* 讓區塊有點透明，能看到背景 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 更明顯的陰影 */
 }
 
 #game-container {
     max-width: 800px;
     margin: 0 auto;
+    background-color: rgba(240, 240, 240, 0.85); /* 遊戲內容區的背景，稍微透明 */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 /* Header */
 header {
-    background-color: #007BFF; 
+    background-color: #3A70CC; /* 像鑽石方塊或天空的藍色 */
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 25px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* 角色圖片區 (像素化修正) */
@@ -48,17 +65,11 @@ header {
     line-height: 50px;
     background-color: #EEE;
     font-size: 28px; 
-    border-radius: 0; /* 改回方塊/無圓角 */
+    border-radius: 0; /* 方塊/無圓角 */
     border: 2px solid #333;
     padding: 0;
     box-shadow: 2px 2px 0px #000; /* 簡單的方塊陰影 */
-    
     /* 關鍵：強制像素渲染 */
-    image-rendering: pixelated;
-    -ms-interpolation-mode: nearest-neighbor; 
-}
-#player-avatar img {
-    /* 確保如果使用圖片，也能應用像素化 */
     image-rendering: pixelated;
     -ms-interpolation-mode: nearest-neighbor; 
 }
@@ -70,8 +81,9 @@ header {
     display: flex;
     gap: 15px;
     justify-content: center;
-    background-color: #E9ECEF;
+    background-color: rgba(233, 236, 239, 0.9); /* 稍微透明 */
     color: #333;
+    border-radius: 4px;
 }
 .stat-item {
     background-color: #FFF;
@@ -79,62 +91,98 @@ header {
     border-radius: 4px;
     color: #333;
     font-weight: bold;
+    border: 1px solid #DDD;
 }
 
-/* 按鈕風格 (現代) */
+/* 按鈕風格 */
 .block-button {
     padding: 10px 20px;
     cursor: pointer;
-    background-color: #28A745; 
+    background-color: #5CB85C; /* 像綠色羊毛的顏色 */
     color: white;
     font-size: 16px;
     font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.2s;
+    border: 2px solid #4CAE4C; /* 邊框更像方塊 */
+    border-radius: 4px; /* 稍微減少圓角 */
+    box-shadow: 2px 2px 0px #3A8D3A; /* 像素化陰影 */
+    transition: background-color 0.2s, box-shadow 0.1s;
 }
 .block-button:hover, .choice-btn:hover {
-    background-color: #218838;
-    transform: none;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    background-color: #4CAE4C;
+    box-shadow: 3px 3px 0px #2E702E; /* 陰影變化 */
 }
 .block-button.selected {
-    background-color: #FFC107; 
+    background-color: #FFD700; /* 像金塊 */
     color: #333;
+    border-color: #E6B800;
+    box-shadow: 2px 2px 0px #CCA700;
 }
 .block-button:disabled {
-    background-color: #CCC;
+    background-color: #A9A9A9; /* 灰色石頭 */
+    border-color: #8C8C8C;
     cursor: not-allowed;
-    box-shadow: none;
+    box-shadow: 2px 2px 0px #666;
+}
+
+.start-button {
+    background-color: #007BFF; /* 更像傳送門的藍色 */
+    border-color: #0056B3;
+    box-shadow: 2px 2px 0px #004085;
+}
+.start-button:hover {
+    background-color: #0056B3;
+    box-shadow: 3px 3px 0px #003062;
 }
 
 /* 問題區 */
 #question-area {
-    background-color: #DC3545; 
+    background-color: #E74C3C; /* 像岩漿或紅石塊的紅色 */
     padding: 30px;
     font-size: 36px;
     font-weight: bold;
     color: white;
     margin: 30px auto;
+    border: 2px solid #C0392B;
+    border-radius: 4px;
+    box-shadow: 3px 3px 0px #A93226;
 }
 
-/* 選項按鈕區塊 */
+/* 選項按鈕區塊 - 針對 1~20 選項進行調整 */
 #choices-area {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    /* 修改點: 變更為 5 欄佈局以容納 20 個選項 (4 行) */
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 10px; /* 減小間距 */
     margin-top: 20px;
     padding: 20px;
-    background-color: #F8F9FA;
+    background-color: rgba(248, 249, 250, 0.9); /* 稍微透明 */
     border: 1px solid #DDD;
+    border-radius: 4px;
 }
 
 .choice-btn {
-    font-size: 22px;
-    padding: 15px;
-    background-color: #17A2B8; 
+    /* 修改點: 縮小按鈕以適應 5 欄佈局 */
+    font-size: 18px;
+    padding: 8px;
+    background-color: #2ECC71; /* 綠色方塊 */
+    border-color: #27AE60;
+    box-shadow: 2px 2px 0px #219054;
 }
+.choice-btn:hover {
+    background-color: #27AE60;
+    box-shadow: 3px 3px 0px #1E8449;
+}
+.choice-btn.wrong-choice {
+    background-color: #DC3545; /* 選錯時變紅色 */
+    border-color: #C82333;
+    box-shadow: 2px 2px 0px #A71D2A;
+}
+.choice-btn.correct-choice {
+    background-color: #17A2B8; /* 答對時變藍色 */
+    border-color: #138496;
+    box-shadow: 2px 2px 0px #0F6674;
+}
+
 
 /* 歷史紀錄區 */
 #history-table-container {
@@ -142,25 +190,37 @@ header {
     overflow-y: auto;
     margin-top: 15px;
     border: 1px solid #CCC;
+    border-radius: 4px;
 }
 #history-table {
     width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(233, 236, 239, 0.9); /* 稍微透明 */
     margin: 0;
     font-size: 14px;
 }
+#history-table th, #history-table td {
+    border: 1px solid #AAA; /* 深一點的邊框 */
+    padding: 8px;
+    text-align: left;
+}
 #history-table th {
-    position: sticky; /* 讓標題固定 */
+    position: sticky; 
     top: 0;
-    background-color: #343A40;
+    background-color: #34495E; /* 深藍色，像青金石 */
+    color: white;
     z-index: 10;
 }
 
-/* 其他 */
-#timer-box { background-color: #6C757D; color: white; padding: 8px 15px; }
-.feedback { font-size: 18px; font-weight: bold; margin-top: 10px; }
+.feedback { 
+    font-size: 18px; 
+    font-weight: bold; 
+    margin-top: 10px; 
+    background-color: rgba(255, 255, 255, 0.9); /* 確保文字清晰可見 */
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
 .correct { color: #28A745; }
 .wrong { color: #DC3545; }
-table { width: 100%; border-collapse: collapse; background-color: #E9ECEF; margin-top: 20px; }
-th { background-color: #343A40; color: white; }
-td { border: 1px solid #CCC; }
 .hidden { display: none; }
