@@ -13,9 +13,9 @@ let state = {
 
 // 角色經驗和道具的持續儲存狀態
 let CHAR_STATS = {
-    '史帝夫': { exp: 0, level: 1, diamond: 0, redstone: 0, img: '👤' },
+    '史帝夫': { exp: 0, level: 1, diamond: 0, redstone: 0, img: '🧔‍♂️' },
     '艾力克斯': { exp: 0, level: 1, diamond: 0, redstone: 0, img: '👩‍🦰' },
-    '苦力怕': { exp: 0, level: 1, diamond: 0, redstone: 0, img: '💣' },
+    '苦力怕': { exp: 0, level: 1, diamond: 0, redstone: 0, img: '👽' },
     '骷髏': { exp: 0, level: 1, diamond: 0, redstone: 0, img: '💀' },
     '貓咪': { exp: 0, level: 1, diamond: 0, redstone: 0, img: '🐱' },
 };
@@ -535,4 +535,5 @@ function setupEventListeners() {
 document.addEventListener('DOMContentLoaded', () => {
     loadStats();
     setupEventListeners();
+
 });
